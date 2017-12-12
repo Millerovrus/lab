@@ -1,8 +1,11 @@
+package Entity;
+
 import org.joda.time.LocalDate;
 import org.joda.time.Years;
+import Interfaces.Idable;
 
-public class Person implements Comparable<Person>{
-    private int id;
+public class Person implements Idable<Integer> {
+    private Integer id;
     private String name;
     private LocalDate dateOfBirthday;
 
@@ -12,28 +15,17 @@ public class Person implements Comparable<Person>{
         this.dateOfBirthday = dateOfBirthday;
     }
 
-    public int getId() {
+    @Override
+    public Integer getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public LocalDate getDateOfBirthday() {
         return dateOfBirthday;
-    }
-
-    public void setDateOfBirthday(LocalDate dateOfBirthday) {
-        this.dateOfBirthday = dateOfBirthday;
     }
 
     public int getAge(){
@@ -43,7 +35,7 @@ public class Person implements Comparable<Person>{
 
     @Override
     public String toString() {
-        return "Person{" +
+        return "Entity.Person{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", dateOfBirthday=" + dateOfBirthday +
@@ -51,8 +43,4 @@ public class Person implements Comparable<Person>{
                 '}';
     }
 
-    @Override
-    public int compareTo(Person p) {
-        return this.name.compareTo(p.getName());
-    }
 }

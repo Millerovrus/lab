@@ -1,6 +1,8 @@
-import java.util.Comparator;
+package Comporators;
 
-public class YearComparator implements Comparator<Person>{
+import Entity.Person;
+
+public class YearComparator implements InterfaceComparator <Person>{
     @Override
     public int compare(Person o1, Person o2) {
         return o1.getDateOfBirthday().compareTo(o2.getDateOfBirthday());

@@ -1,8 +1,12 @@
+import Entity.Person;
+import Repositories.PersonRepository;
 import org.joda.time.LocalDate;
+
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Repository rep  = new Repository();
+        PersonRepository rep  = new PersonRepository();
 
         Person pers_1 = new Person(1,"Taylor",new LocalDate(1962,6,5));
         Person pers_2 = new Person(2,"Joe",new LocalDate(1995,5,10));
@@ -23,29 +27,29 @@ public class Main {
         rep.add(pers_8);
 
         for (int i = 0; i < rep.getSize(); i++) {
-            System.out.println(rep.getPerson(i).toString());
+            System.out.println(rep.searchById(i).toString());
         }
         System.out.println();
 
 
         rep.remove(3);
 
-        System.out.println(rep.searchById(5).toString());
-
+        for (int i = 0; i < rep.getSize(); i++) {
+            System.out.println(rep.searchById(i).toString());
+        }
         System.out.println();
 
-        Person[] foundPersons = rep.searchByName("John");
-        for (int i = 0; i <foundPersons.length; i++) {
-            System.out.println(foundPersons[i].toString());
+        List<Person> foundPersons = rep.searchByName("John");
+        for (Person person : foundPersons) {
+            System.out.println(person.toString());
         }
 
         System.out.println();
 
-        Person[] foundPersonsAge = rep.searchByAge(22);
-        for (int i = 0; i <foundPersonsAge.length; i++) {
-            System.out.println(foundPersonsAge[i].toString());
+        foundPersons = rep.searchByAge(22);
+        for (Person person : foundPersons) {
+            System.out.println(person.toString());
         }
-
     }
 
 }
