@@ -1,7 +1,6 @@
 package Repositories;
 
 import Comparators.Comparator;
-import Entity.Car;
 import Entity.Idable;
 import Search.Checker;
 import Sorters.Configurator;
