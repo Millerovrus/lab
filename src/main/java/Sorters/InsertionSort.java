@@ -1,11 +1,17 @@
 package Sorters;
 
-import Comporators.InterfaceComparator;
-
+import Comparators.Comparator;
 import java.util.List;
 
 public class InsertionSort <T> implements SorterInterface <T>{
-    public List<T> sort(List<T> objects, InterfaceComparator comparator) {
+    /**
+     * Сортировка вставками
+     * @param objects
+     * @param comparator
+     * @return
+     */
+    @Override
+    public List<T> sort(List<T> objects, Comparator<T> comparator) {
         int i, j;
         for (i = 1; i < objects.size(); i++) {
             j = i;

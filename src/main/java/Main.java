@@ -1,5 +1,10 @@
+import Comparators.PersonAgeComparator;
+import Comparators.PersonIdComparator;
+import Comparators.PersonNameComparator;
 import Entity.Person;
 import Repositories.PersonRepository;
+import Search.PersonAgeChecker;
+import Search.PersonNameChecker;
 import org.joda.time.LocalDate;
 
 import java.util.List;
@@ -27,7 +32,7 @@ public class Main {
         rep.add(pers_8);
 
         for (int i = 0; i < rep.getSize(); i++) {
-            System.out.println(rep.searchById(i).toString());
+            System.out.println(rep.get(i).toString());
         }
         System.out.println();
 
@@ -35,21 +40,35 @@ public class Main {
         rep.remove(3);
 
         for (int i = 0; i < rep.getSize(); i++) {
-            System.out.println(rep.searchById(i).toString());
+            System.out.println(rep.get(i).toString());
         }
         System.out.println();
 
-        List<Person> foundPersons = rep.searchByName("John");
+        System.out.println(rep.searchById(1).toString());
+
+        System.out.println();
+
+        List<Person> foundPersons = rep.searchBy(new PersonNameChecker(), "Joe");
+        for (Person foundPerson : foundPersons) {
+            System.out.println(foundPerson.toString());
+        }
+
+        System.out.println();
+
+        foundPersons = rep.searchBy(new PersonAgeChecker(), 22);
         for (Person person : foundPersons) {
             System.out.println(person.toString());
         }
 
         System.out.println();
 
-        foundPersons = rep.searchByAge(22);
-        for (Person person : foundPersons) {
-            System.out.println(person.toString());
+        rep.sort(rep.getRepository(), new PersonNameComparator());
+
+        for (int i = 0; i < rep.getSize(); i++) {
+            System.out.println(rep.get(i).toString());
         }
+        System.out.println(rep.getSize());
+
     }
 
 }

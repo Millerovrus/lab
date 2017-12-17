@@ -1,29 +1,21 @@
 package Entity;
 
-import Interfaces.Idable;
-
 public class Car implements Idable<Integer> {
     private Integer id;
     private String model;
     private String color;
     private String number;
-    private int yearOfIssue;
 
-    public Car(Integer id, String model, String color, String number, int yearOfIssue) {
+    public Car(Integer id, String model, String color, String number) {
         this.id = id;
         this.model = model;
         this.color = color;
         this.number = number;
-        this.yearOfIssue = yearOfIssue;
     }
 
     @Override
     public Integer getId() {
         return this.id;
-    }
-
-    public int getYearOfIssue() {
-        return yearOfIssue;
     }
 
     public String getModel() {
@@ -45,7 +37,6 @@ public class Car implements Idable<Integer> {
                 ", model='" + model + '\'' +
                 ", color='" + color + '\'' +
                 ", number='" + number + '\'' +
-                ", yearOfIssue=" + yearOfIssue +
                 '}';
     }
 }

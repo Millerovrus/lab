@@ -1,6 +1,8 @@
 package Repositories;
 
-import Interfaces.Idable;
+import Entity.Idable;
+
+import java.util.List;
 
 public interface RepositoryInterface<T extends Idable<ID>, ID> {
     void add(T object);
@@ -8,4 +10,6 @@ public interface RepositoryInterface<T extends Idable<ID>, ID> {
     T searchById(ID id);
     boolean exists(ID id);
     int getSize();
+    T get(int i);
+    List<T> getRepository();
 }

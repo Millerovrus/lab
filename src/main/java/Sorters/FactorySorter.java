@@ -1,0 +1,18 @@
+package Sorters;
+
+public class FactorySorter<T> {
+    /**
+     * Возвращает способ сортировки в зависимости от конфига
+     * @param config
+     * @return
+     */
+    public SorterInterface<T> getSorter(int config) {
+        SorterInterface sorter = null;
+        if (config == 1) {
+            sorter = new BubbleSort();
+        } else if (config == 2) {
+            sorter = new InsertionSort();
+        }
+        return sorter;
+    }
+}

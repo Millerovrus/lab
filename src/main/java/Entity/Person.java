@@ -2,7 +2,6 @@ package Entity;
 
 import org.joda.time.LocalDate;
 import org.joda.time.Years;
-import Interfaces.Idable;
 
 public class Person implements Idable<Integer> {
     private Integer id;
@@ -28,7 +27,7 @@ public class Person implements Idable<Integer> {
         return dateOfBirthday;
     }
 
-    public int getAge(){
+    public Integer getAge(){
         Years tempAge = Years.yearsBetween(LocalDate.now(), dateOfBirthday);
         return Integer.parseInt(tempAge.toString().replaceAll("\\D",""));
     }
