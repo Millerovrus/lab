@@ -4,7 +4,7 @@ public class FactorySorter<T> {
     /**
      * Возвращает способ сортировки в зависимости от конфига
      * @param config
-     * @return
+     * @return метод сортировки
      */
     public SorterInterface<T> getSorter(int config) {
         SorterInterface sorter = null;
