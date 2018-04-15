@@ -3,8 +3,8 @@ package Repositories;
 import Comparators.Comparator;
 import Entity.Idable;
 import Search.Checker;
-import Sorters.Configurator;
-import Sorters.FactorySorter;
+import Sorters.Injector;
+import Sorters.SorterConf;
 import Sorters.SorterInterface;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,7 +14,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 public abstract class RepositoryAbstract<T extends Idable<ID>, ID> implements RepositoryInterface<T, ID>{
-    private Configurator configurator = new Configurator();
     private List<T> objects = new LinkedList<>();
     private static Logger LOGGER = LogManager.getLogger();
 
@@ -63,8 +62,8 @@ public abstract class RepositoryAbstract<T extends Idable<ID>, ID> implements Re
      */
     public void sort(List<T> objects, Comparator<T> comparator) {
         LOGGER.info("sort");
-        SorterInterface<T> sorter = new FactorySorter<T>().getSorter(configurator.config);
-        sorter.sort(objects, comparator);
+        SorterConf sorterConf = (SorterConf) (new Injector().inject(new SorterConf()));
+        sorterConf.sort(objects, comparator);
     }
 
     /**
