@@ -1,18 +1,22 @@
 package Repositories;
 
 import Comparators.Comparator;
+import Entity.Car;
 import Entity.Idable;
+import Entity.Person;
 import Search.Checker;
 import Sorters.Injector;
 import Sorters.SorterConf;
-import Sorters.SorterInterface;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-
+import javax.xml.bind.annotation.*;
 import java.util.LinkedList;
 import java.util.List;
 
+@XmlAccessorType(XmlAccessType.NONE)
+@XmlTransient
+@XmlSeeAlso({PersonRepository.class, CarRepository.class})
 public abstract class RepositoryAbstract<T extends Idable<ID>, ID> implements RepositoryInterface<T, ID>{
     private List<T> objects = new LinkedList<>();
     private static Logger LOGGER = LogManager.getLogger();
@@ -116,6 +120,10 @@ public abstract class RepositoryAbstract<T extends Idable<ID>, ID> implements Re
      * Получаем репозиторий
      * @return
      */
+    @XmlElements({
+            @XmlElement(name = "Person", type = Person.class),
+            @XmlElement(name = "Car", type = Car.class)
+    })
     public List<T> getRepository() {
         return this.objects;
     }

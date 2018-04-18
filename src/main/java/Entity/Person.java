@@ -1,8 +1,13 @@
 package Entity;
 
+import JAXBParser.LocalDateAdapter;
 import org.joda.time.LocalDate;
 import org.joda.time.Years;
 
+import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+@XmlType(propOrder = {"name", "dateOfBirthday"}, name = "person")
 public class Person implements Idable<Integer> {
     private Integer id;
     private String name;
@@ -14,17 +19,34 @@ public class Person implements Idable<Integer> {
         this.dateOfBirthday = dateOfBirthday;
     }
 
+    public Person() {
+    }
+
     @Override
+    @XmlAttribute(name="id")
     public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @XmlJavaTypeAdapter(value = LocalDateAdapter.class)
     public LocalDate getDateOfBirthday() {
         return dateOfBirthday;
+    }
+
+    public void setDateOfBirthday(LocalDate dateOfBirthday) {
+        this.dateOfBirthday = dateOfBirthday;
     }
 
     public Integer getAge(){

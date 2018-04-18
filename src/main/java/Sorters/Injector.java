@@ -37,8 +37,8 @@ public class Injector {
 
             if (field.isAnnotationPresent(AutoInjectable.class)){
                 try {
-                    field.set(object, Class.forName(properties.getProperty(field.getType().getName())).getDeclaredConstructor().newInstance());
-                } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e) {
+                    field.set(object, Class.forName(properties.getProperty(field.getType().getName())).newInstance());
+                } catch (ClassNotFoundException | IllegalAccessException | InstantiationException  e) {
                     e.printStackTrace();
                 }
             }

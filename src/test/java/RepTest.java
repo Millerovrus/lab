@@ -2,7 +2,9 @@ import Comparators.PersonAgeComparator;
 import Comparators.PersonIdComparator;
 import Comparators.PersonNameComparator;
 import Entity.Person;
+import JAXBParser.JaxbParser;
 import Repositories.PersonRepository;
+import Repositories.RepositoryAbstract;
 import Search.PersonAgeChecker;
 import Search.PersonNameChecker;
 import org.joda.time.LocalDate;
@@ -177,5 +179,38 @@ public class RepTest {
 
         Assert.assertEquals("Test searchByIDPerson Wrong!", rep.searchById(2), pers_2);
 
+    }
+
+    @Test
+    public void toXML(){
+        RepositoryAbstract<Person, Integer> personRepository  = new PersonRepository();
+
+        Person pers_1 = new Person(1,"Taylor",new LocalDate(1962,6,5));
+        Person pers_2 = new Person(2,"Joe",new LocalDate(1995,5,10));
+        Person pers_3 = new Person(3,"Robert",new LocalDate(1980,3,15));
+        Person pers_4 = new Person(4,"Nancy",new LocalDate(1977,4,14));
+        Person pers_5 = new Person(5,"John",new LocalDate(1992,1,13));
+        Person pers_6 = new Person(6,"Joe",new LocalDate(1999,2,21));
+        Person pers_7 = new Person(7,"Joe",new LocalDate(1960,6,1));
+        Person pers_8 = new Person(8,"Luis",new LocalDate(1995,11,11));
+
+        personRepository.add(pers_1);
+        personRepository.add(pers_2);
+        personRepository.add(pers_3);
+        personRepository.add(pers_4);
+        personRepository.add(pers_5);
+        personRepository.add(pers_6);
+        personRepository.add(pers_7);
+        personRepository.add(pers_8);
+
+        JaxbParser.convertObjectToXml(personRepository, "kek.xml");
+    }
+
+    @Test
+    public void fromXML(){
+        RepositoryAbstract rep = JaxbParser.convertXmlToObject("kek.xml");
+        for (Object o : rep.getRepository()) {
+            System.out.println(o.toString());
+        }
     }
 }

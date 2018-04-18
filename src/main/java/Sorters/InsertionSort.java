@@ -12,6 +12,7 @@ public class InsertionSort <T> implements SorterInterface <T>{
      */
     @Override
     public List<T> sort(List<T> objects, Comparator<T> comparator) {
+        System.out.println("start ins sort");
         int i, j;
         for (i = 1; i < objects.size(); i++) {
             j = i;

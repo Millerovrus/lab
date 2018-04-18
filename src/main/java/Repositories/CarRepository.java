@@ -6,8 +6,14 @@ import Search.CarColorChecker;
 import Search.CarIdChecker;
 import Search.CarModelChecker;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
 import java.util.List;
 
+@XmlRootElement(name = "CarRepository")
+@XmlSeeAlso({Car.class})
 public class CarRepository extends RepositoryAbstract<Car, Integer>{
 
     List<Car> searchByColor(String color) {
